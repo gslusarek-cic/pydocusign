@@ -421,6 +421,19 @@ class DocuSignClient(object):
                       envelopeId=envelopeId)
         return self.get(url)
 
+    def get_envelope_form_data(self, envelopeId):
+        """
+        GET envelope form data
+        :param envelopeId:
+        :return: json with form data
+        """
+        if not self.account_url:
+            self.login_information()
+        url = '/accounts/{accountId}/envelopes/{envelopeId}/form_data' \
+            .format(accountId=self.account_id,
+                    envelopeId=envelopeId)
+        return self.get(url)
+
     def post_recipient_view(self, authenticationMethod=None,
                             clientUserId='', email='', envelopeId='',
                             returnUrl='', userId='', userName=''):
